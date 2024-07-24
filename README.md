@@ -23,7 +23,7 @@ A Flask-based web application for managing and displaying a movie database. This
 
     ```sh
     git clone https://github.com/yourusername/moviedatabase.git
-    cd moviedatabase
+    cd Movie-Information-Website-with-Flask
     ```
 
 2. Create a virtual environment:
@@ -70,9 +70,7 @@ A Flask-based web application for managing and displaying a movie database. This
 
 ## Project Structure
 
-- `app.py`: The main application file.
-- `models.py`: Defines the database models.
-- `setup_db.py`: Script to set up the database schema.
+- `app1.py`: The main application file.
 - `templates/`: Contains HTML templates.
 - `static/`: Contains static files like CSS and JavaScript.
 

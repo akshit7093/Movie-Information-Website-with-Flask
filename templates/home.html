@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Movie Database{% endblock %}
+
+{% block content %}
+    <section class="banner">
+        <img src="https://via.placeholder.com/1500x600" alt="Featured Movie">
+        <div class="banner-content">
+            <h1>The Dark Knight</h1>
+            <div class="banner-buttons">
+                <a href="#" class="btn play"><i class="fas fa-play"></i> Play</a>
+                <a href="#" class="btn info"><i class="fas fa-info-circle"></i> More Info</a>
+            </div>
+        </div>
+    </section>
+    <section class="movie-section">
+        <h2>New on Netflix</h2>
+        <div class="movie-row">
+            {% for movie in movies %}
+                <a href="{{ url_for('movie_detail', movie_id=movie.id) }}" class="movie-card">
+                    <img src="{{ movie.poster_thumbnail_url }}" alt="{{ movie.title }} poster" class="movie-thumbnail">
+                    <img src="{{ movie.wide_gif_url }}" alt="{{ movie.title }} wide thumbnail" class="movie-wide-thumbnail">
+                    <div class="movie-card-content">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.release_year }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

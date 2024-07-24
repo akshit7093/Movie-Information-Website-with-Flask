@@ -1,0 +1,51 @@
+<!-- templates/movie.html -->
+{% extends "base.html" %}
+
+{% block title %}{{ movie.title }} - Movie Database{% endblock %}
+
+{% block content %}
+<div class="movie-detail">
+    <div class="movie-header">
+        <img src="{{ movie.poster_url }}" alt="{{ movie.title }} poster" class="movie-poster">
+        <div class="movie-info">
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.genre }}, {{ movie.release_year }}</p>
+            <p>{{ movie.description }}</p>
+            <button id="review-toggle" class="button">Add Review</button>
+        </div>
+    </div>
+
+    <div id="review-form" class="review-form" style="display: none;">
+        <h3>Write a Review</h3>
+        <form action="{{ url_for('add_review', movie_id=movie.id) }}" method="POST">
+            <input type="text" name="author" placeholder="Your Name" required>
+            <textarea name="content" placeholder="Review" rows="3" required></textarea>
+            <select name="rating" required>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <button type="submit" class="button">Submit Review</button>
+        </form>
+    </div>
+
+    <div class="reviews">
+        <h3>Reviews</h3>
+        {% for review in reviews %}
+        <div class="review">
+            <p><strong>{{ review.author }}</strong> - {{ review.rating }} Stars</p>
+            <p>{{ review.content }}</p>
+            <p><em>{{ review.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</em></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    $('#review-toggle').click(function() {
+        $('#review-form').slideToggle();
+    });
+</script>
+{% endblock %}

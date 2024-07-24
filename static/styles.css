@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #e50914;
+    --secondary-color: #141414;
+    --text-color: #fff;
+    --background-color: #000;
+    --card-background: #141414;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+header {
+    background: var(--secondary-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* position: fixed; */
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-icons a {
+    color: var(--text-color);
+    margin-left: 20px;
+    font-size: 1.2rem;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: var(--text-color);
+}
+
+.banner-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.banner-buttons .btn {
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.banner-buttons .btn.play {
+    background: #fff;
+    color: #000;
+}
+
+.banner-buttons .btn:hover {
+    background: #b20710;
+}
+
+.movie-section {
+    padding: 20px;
+}
+
+.movie-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.movie-row {
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+    padding: 10px;
+}
+
+.movie-card {
+    flex: 0 0 auto;
+    background: var(--card-background);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-card-content {
+    padding: 10px;
+}
+
+.movie-card h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.movie-card p {
+    font-size: 0.8rem;
+    color: #bbb;
+}
+/* Add these styles to the existing styles.css */
+
+.movie-info {
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.movie-info .movie-poster {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+form {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: var(--text-color);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form input[type="submit"] {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #b20710;
+}
+/* Add these styles to the existing styles.css */
+
+.movie-card {
+    position: relative;
+    overflow: visible;
+}
+
+.movie-thumbnail {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.movie-wide-thumbnail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 1500px;
+    height: 600px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.movie-card:hover .movie-thumbnail {
+    opacity: 0;
+}
+
+.movie-card:hover .movie-wide-thumbnail {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}

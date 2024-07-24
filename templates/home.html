@@ -3,28 +3,48 @@
 {% block title %}Home - Movie Database{% endblock %}
 
 {% block content %}
-    <section class="banner">
-        <img src="https://via.placeholder.com/1500x600" alt="Featured Movie">
-        <div class="banner-content">
-            <h1>The Dark Knight</h1>
-            <div class="banner-buttons">
-                <a href="#" class="btn play"><i class="fas fa-play"></i> Play</a>
-                <a href="#" class="btn info"><i class="fas fa-info-circle"></i> More Info</a>
+    {% if latest_movie %}
+        <section class="banner">
+            {% if 'youtube.com' in latest_movie.wide_gif_url or 'youtu.be' in latest_movie.wide_gif_url %}
+                <iframe width="560" height="315" src="{{ latest_movie.wide_gif_url | safe }}" frameborder="0" allowfullscreen></iframe>
+            {% else %}
+                <img src="{{ latest_movie.wide_gif_url }}" alt="{{ latest_movie.title }}" class="banner-image">
+            {% endif %}
+            <div class="banner-content">
+                <h1>{{ latest_movie.title }}</h1>
+                <p>{{ latest_movie.release_year }}</p>
+                <div class="banner-buttons">
+                    <a href="{{ url_for('movie_detail', movie_id=latest_movie.id) }}" class="btn play"><i class="fas fa-play"></i> Play</a>
+                    <a href="{{ url_for('movie_detail', movie_id=latest_movie.id) }}" class="btn info"><i class="fas fa-info-circle"></i> More Info</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% else %}
+        <section class="banner">
+            <p>No latest movie available.</p>
+        </section>
+    {% endif %}
+
     <section class="movie-section">
-        <h2>New on Netflix</h2>
+        <h2>New on Streaming</h2>
         <div class="movie-row">
             {% for movie in movies %}
-                <a href="{{ url_for('movie_detail', movie_id=movie.id) }}" class="movie-card">
-                    <img src="{{ movie.poster_thumbnail_url }}" alt="{{ movie.title }} poster" class="movie-thumbnail">
-                    <img src="{{ movie.wide_gif_url }}" alt="{{ movie.title }} wide thumbnail" class="movie-wide-thumbnail">
-                    <div class="movie-card-content">
-                        <h3>{{ movie.title }}</h3>
-                        <p>{{ movie.release_year }}</p>
-                    </div>
-                </a>
+                <div class="movie-card">
+                    <a href="{{ url_for('movie_detail', movie_id=movie.id) }}" class="movie-link">
+                        <div class="thumbnail-container">
+                            <img src="{{ movie.poster_url }}" alt="{{ movie.title }} poster" class="movie-thumbnail">
+                            {% if 'youtube.com' in movie.wide_gif_url or 'youtu.be' in movie.wide_gif_url %}
+                                <iframe width="150" height="84" src="{{ movie.wide_gif_url | safe }}" frameborder="0" allowfullscreen></iframe>
+                            {% else %}
+                            <img src="{{ movie.poster_thumbnail_url }}" alt="{{ movie.title }} poster" class="movie-wide-thumbnail">
+                            {% endif %}
+                        </div>
+                        <div class="movie-card-content">
+                            <h3>{{ movie.title }}</h3>
+                            <p>{{ movie.release_year }}</p>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
         </div>
     </section>

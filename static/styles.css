@@ -261,3 +261,77 @@ form input[type="submit"]:hover {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
+
+.movie-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.movie-card {
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-link {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+/* 
+.movie-thumbnail,
+.movie-wide-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+} */
+
+.movie-wide-thumbnail {
+    opacity: 0;
+}
+
+.movie-card:hover .movie-thumbnail {
+    opacity: 0;
+}
+
+.movie-card:hover .movie-wide-thumbnail {
+    opacity: 1;
+}
+
+.movie-card-content {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.movie-card-content h3 {
+    margin: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-card-content p {
+    margin: 5px 0 0;
+    font-size: 0.8rem;
+}
+
+/* Other styles remain the same */

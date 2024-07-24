@@ -36,10 +36,13 @@ class Review(db.Model):
 with app.app_context():
     db.create_all()
 
+from sqlalchemy import desc
+
 @app.route('/')
 def home():
     movies = Movie.query.all()
-    return render_template('home.html', movies=movies)
+    latest_movie = Movie.query.order_by(desc(Movie.id)).first()  # Get the most recently added movie
+    return render_template('home.html', movies=movies, latest_movie=latest_movie)
 
 @app.route('/movie/<int:movie_id>')
 def movie_detail(movie_id):
@@ -85,4 +88,4 @@ def search():
     return render_template('search_results.html', movies=movies, query=query)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=5000)
